@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Mon Aug 25 12:19:04 GMT-03:00 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-0198-e1cf-ba34-00000eeee110 
+on database directory C:\Users\Admin\Documents\ArquitecturaWeb\MyDerbyDb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@18b4aac2 
+Loaded from file:/C:/Users/Admin/.m2/repository/org/apache/derby/derby/10.17.1.0/derby-10.17.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=24.0.1+9-30
+user.dir=C:\Users\Admin\Documents\ArquitecturaWeb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
