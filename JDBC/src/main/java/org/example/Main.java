@@ -44,4 +44,32 @@ public class Main {
             e.printStackTrace();
         }
     }
+    private static void deletePerson(Connection conn, int id) throws SQLException {
+        String delete = "DELETE FROM persona WHERE id = ?";
+        PreparedStatement ps= conn.prepareStatement(delete);
+        ps.setInt(1,id);
+
+        int rowsAffected = ps.executeUpdate();
+        if (rowsAffected > 0) {
+            System.out.println("Persona con ID " + id + " eliminada exitosamente.");
+        } else {
+            System.out.println("No se encontró una persona con el ID: " + id);
+        }
+    }
+
+    private static void updatePerson(Connection conn, int id, String nombre, String apellido, int edad) throws SQLException {
+        String update= "UPDATE persona set nombre = ?, apellido = ?, edad = ? WHERE id = ?";
+        PreparedStatement ps= conn.prepareStatement(update);
+        ps.setString(1,nombre);
+        ps.setString(2, apellido);
+        ps.setInt(3, edad);
+        ps.setInt(4, id);
+        int rowsAffected = ps.executeUpdate();
+        if (rowsAffected > 0) {
+            System.out.println("Persona actualizada exitosamente.");
+        }else {
+            System.out.println("No se encontro una persona con el ID: " + id);
+        }
+    }
+
 }
