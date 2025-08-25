@@ -19,6 +19,9 @@ public class Main {
             stmt.execute(sql);
             addPerson(conn,"Soledad","Gomez",30);
             addPerson(conn,"Luciano","Tourn",26);
+            addPerson(conn,"Juan","Miguel",28);
+            deletePerson(conn,1);
+
 
         }
         catch (SQLException e) {
