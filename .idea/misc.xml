@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/JDBC/pom.xml" />
         <option value="$PROJECT_DIR$/JDBC-MYSQL/pom.xml" />
+        <option value="$PROJECT_DIR$/JDBC-DAO/pom.xml" />
       </list>
     </option>
   </component>
