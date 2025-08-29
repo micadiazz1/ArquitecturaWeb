@@ -1,21 +1,23 @@
 package org.example;
 
 import org.example.Dao.PersonaDAO;
-import org.example.Dao.PersonaDAOMySQL;
-import org.example.Service.PersonaService;
+
+import org.example.factory.DAOfactory;
+import org.example.repository.PersonaDAOMySQL;
+
+import java.util.List;
 
 
 public class Main {
     public static void main(String[] args) {
-        PersonaDAO personaDAO = new PersonaDAOMySQL();
-        PersonaService service = new PersonaService(personaDAO);
-        Persona persona1 = new Persona(1,"Lulox","dj",28);
-        Persona persona2 = new Persona(2,"TGomaz","dj",20);
-        service.insertarPersona(persona1);
-        service.insertarPersona(persona2);
-        System.out.println("Personas en la BD:");
-        for (Persona p : service.listarTodas()) {
-            System.out.println(p);
+        DAOfactory factory = DAOfactory.getIntence(1);
+        Persona nuevaPersona = new Persona(2, "DJ", "Lulox", 43);
+        factory.insertarPersona(nuevaPersona);
+        System.out.println("Persona insertada correctamente.");
+        List<Persona> personas = factory.getAllPersonas();
+        for (Persona p : personas) {
+            System.out.println(p.getId() + " - " + p.getNombre() + " " + p.getApellido() + " (" + p.getEdad() + ")");
         }
+
     }
 }

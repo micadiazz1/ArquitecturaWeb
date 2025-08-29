@@ -1,23 +1,26 @@
-package org.example.Dao;
+package org.example.repository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.example.Dao.PersonaDAO;
 import org.example.Persona;
-public class PersonaDAOMySQL implements PersonaDAO {
+import org.example.factory.DAOfactory;
 
-    private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3307/mydbDAO";
-        String user = "root";
-        String password = "123";
-        return DriverManager.getConnection(url, user, password);
+public class PersonaDAOMySQL  implements PersonaDAO {
+
+
+    private final Connection conn;
+
+    public PersonaDAOMySQL(Connection con) {
+        this.conn = con;
     }
-
     @Override
     public List<Persona> getAllPersonas() {
         List<Persona> personas = new ArrayList<>();
         String sql = "SELECT * FROM users";
 
-        try (Connection conn = getConnection();
+        try (
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -39,7 +42,7 @@ public class PersonaDAOMySQL implements PersonaDAO {
     @Override
     public Persona getPersonaById(int id) {
         String sql = "SELECT * FROM users WHERE id = ?";
-        try (Connection conn = getConnection();
+        try (
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
 
@@ -61,7 +64,7 @@ public class PersonaDAOMySQL implements PersonaDAO {
     @Override
     public void insertarPersona(Persona persona) {
         String sql = "INSERT INTO users(nombre, apellido, edad) VALUES (?, ?, ?)";
-        try (Connection conn = getConnection();
+        try (
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, persona.getNombre());
             stmt.setString(2, persona.getApellido());
@@ -75,7 +78,7 @@ public class PersonaDAOMySQL implements PersonaDAO {
     @Override
     public void actualizarPersona(Persona persona) {
         String sql = "UPDATE users SET nombre=?, apellido=?, edad=? WHERE id=?";
-        try (Connection conn = getConnection();
+        try (
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, persona.getNombre());
             stmt.setString(2, persona.getApellido());
@@ -90,7 +93,7 @@ public class PersonaDAOMySQL implements PersonaDAO {
     @Override
     public void eliminarPersona(int id) {
         String sql = "DELETE FROM users WHERE id=?";
-        try (Connection conn = getConnection();
+        try (
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
